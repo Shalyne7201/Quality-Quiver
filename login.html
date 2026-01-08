@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - Quality-Quiver</title>
-  <link rel="stylesheet" href="style.css"> <!-- optional, if you have a CSS file -->
   <style>
-    /* Reset & base */
     body, html {
       margin: 0;
       padding: 0;
@@ -18,7 +16,6 @@
       align-items: center;
     }
 
-    /* Login container */
     .login-container {
       background: #fff;
       padding: 40px;
@@ -28,26 +25,18 @@
       text-align: center;
     }
 
-    .login-container h1 {
-      margin-bottom: 20px;
-      color: #333;
-    }
+    h1 { margin-bottom: 20px; color: #333; }
 
-    .login-container form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
+    form { display: flex; flex-direction: column; gap: 15px; }
 
-    .login-container input[type="text"],
-    .login-container input[type="password"] {
+    input, select {
       padding: 12px;
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 14px;
     }
 
-    .login-container button {
+    button {
       padding: 12px;
       background: #4CAF50;
       color: white;
@@ -58,25 +47,8 @@
       transition: background 0.3s;
     }
 
-    .login-container button:hover {
-      background: #45a049;
-    }
+    button:hover { background: #45a049; }
 
-    .login-footer {
-      margin-top: 15px;
-      font-size: 14px;
-    }
-
-    .login-footer a {
-      color: #4CAF50;
-      text-decoration: none;
-    }
-
-    .login-footer a:hover {
-      text-decoration: underline;
-    }
-
-    /* Top right signup */
     .signup-link {
       position: absolute;
       top: 20px;
@@ -84,19 +56,12 @@
       font-size: 14px;
     }
 
-    .signup-link a {
-      color: #4CAF50;
-      text-decoration: none;
-    }
-
-    .signup-link a:hover {
-      text-decoration: underline;
-    }
+    .signup-link a { color: #4CAF50; text-decoration: none; }
+    .signup-link a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
 
-  <!-- Signup link top-right -->
   <div class="signup-link">
     Don't have an account? <a href="signup.html">Sign Up</a>
   </div>
@@ -106,27 +71,33 @@
     <form id="loginForm">
       <input type="text" id="username" placeholder="Username" required>
       <input type="password" id="password" placeholder="Password" required>
+      <select id="role" required>
+        <option value="">Select Role</option>
+        <option value="leadership">Leadership</option>
+        <option value="associate">Associate</option>
+      </select>
       <button type="submit">Login</button>
     </form>
-    <div class="login-footer">
-      <a href="#">Forgot Password?</a>
-    </div>
   </div>
 
   <script>
-    // Simple login handling
     const loginForm = document.getElementById('loginForm');
     loginForm.addEventListener('submit', function(e) {
       e.preventDefault();
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
+      const role = document.getElementById('role').value;
 
-      // Example: just redirect to dashboard (replace with real auth later)
-      if(username && password) {
-        alert(`Welcome, ${username}! Redirecting to dashboard...`);
-        window.location.href = 'index.html';
+      if(username && password && role) {
+        if(role === 'leadership') {
+          alert(`Welcome, ${username} (Leadership)! Redirecting to leadership dashboard...`);
+          window.location.href = 'leadership-dashboard.html';
+        } else if(role === 'associate') {
+          alert(`Welcome, ${username} (Associate)! Redirecting to associate dashboard...`);
+          window.location.href = 'associate-dashboard.html';
+        }
       } else {
-        alert('Please enter your username and password.');
+        alert('Please fill in all fields and select a role.');
       }
     });
   </script>
