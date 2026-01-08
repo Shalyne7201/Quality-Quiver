@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - Quality-Quiver</title>
-  <link rel="stylesheet" href="style.css"> <!-- optional if you have CSS -->
   <style>
     body, html {
       margin: 0;
@@ -26,27 +25,18 @@
       text-align: center;
     }
 
-    .signup-container h1 {
-      margin-bottom: 20px;
-      color: #333;
-    }
+    h1 { margin-bottom: 20px; color: #333; }
 
-    .signup-container form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
+    form { display: flex; flex-direction: column; gap: 15px; }
 
-    .signup-container input[type="text"],
-    .signup-container input[type="email"],
-    .signup-container input[type="password"] {
+    input, select {
       padding: 12px;
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 14px;
     }
 
-    .signup-container button {
+    button {
       padding: 12px;
       background: #4CAF50;
       color: white;
@@ -57,25 +47,8 @@
       transition: background 0.3s;
     }
 
-    .signup-container button:hover {
-      background: #45a049;
-    }
+    button:hover { background: #45a049; }
 
-    .signup-footer {
-      margin-top: 15px;
-      font-size: 14px;
-    }
-
-    .signup-footer a {
-      color: #4CAF50;
-      text-decoration: none;
-    }
-
-    .signup-footer a:hover {
-      text-decoration: underline;
-    }
-
-    /* Top right login */
     .login-link {
       position: absolute;
       top: 20px;
@@ -83,19 +56,12 @@
       font-size: 14px;
     }
 
-    .login-link a {
-      color: #4CAF50;
-      text-decoration: none;
-    }
-
-    .login-link a:hover {
-      text-decoration: underline;
-    }
+    .login-link a { color: #4CAF50; text-decoration: none; }
+    .login-link a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
 
-  <!-- Login link top-right -->
   <div class="login-link">
     Already have an account? <a href="login.html">Login</a>
   </div>
@@ -107,28 +73,31 @@
       <input type="email" id="email" placeholder="Email Address" required>
       <input type="text" id="username" placeholder="Username" required>
       <input type="password" id="password" placeholder="Password" required>
+      <select id="role" required>
+        <option value="">Select Role</option>
+        <option value="leadership">Leadership</option>
+        <option value="associate">Associate</option>
+      </select>
       <button type="submit">Sign Up</button>
     </form>
-    <div class="signup-footer">
-      <a href="#">Forgot Password?</a>
-    </div>
   </div>
 
   <script>
-    // Simple signup handling
     const signupForm = document.getElementById('signupForm');
     signupForm.addEventListener('submit', function(e) {
       e.preventDefault();
+
       const fullname = document.getElementById('fullname').value;
       const email = document.getElementById('email').value;
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
+      const role = document.getElementById('role').value;
 
-      if(fullname && email && username && password) {
-        alert(`Account created for ${fullname}! Redirecting to login...`);
+      if(fullname && email && username && password && role) {
+        alert(`Account created for ${fullname} as ${role}! Redirecting to login...`);
         window.location.href = 'login.html';
       } else {
-        alert('Please fill in all fields.');
+        alert('Please fill in all fields and select a role.');
       }
     });
   </script>
