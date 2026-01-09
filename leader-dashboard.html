@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Leadership Dashboard | Quality-Quiver</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f4f6f9;
+      color: #333;
+    }
+
+    /* Header */
+    .header {
+      background: #0a2540;
+      color: white;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .logout-btn {
+      background: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .logout-btn:hover {
+      background: #e60000;
+    }
+
+    /* Main */
+    .container {
+      padding: 30px;
+    }
+
+    .welcome {
+      margin-bottom: 25px;
+    }
+
+    .welcome h2 {
+      margin: 0 0 5px 0;
+    }
+
+    .welcome p {
+      color: #666;
+    }
+
+    /* Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #0a2540;
+    }
+
+    .card p {
+      color: #555;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <h1>Quality-Quiver | Leadership Dashboard</h1>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="welcome">
+      <h2>Welcome, Leadership 👋</h2>
+      <p>Here’s an overview of quality operations and performance.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card" onclick="goTo('manage-reports.html')">
+        <h3>📊 QC Reports</h3>
+        <p>Review and manage quality control reports.</p>
+      </div>
+
+      <div class="card" onclick="goTo('team-performance.html')">
+        <h3>👥 Team Performance</h3>
+        <p>Monitor agent and team quality metrics.</p>
+      </div>
+
+      <div class="card" onclick="goTo('compliance.html')">
+        <h3>✅ Compliance</h3>
+        <p>Track audit scores and compliance status.</p>
+      </div>
+
+      <div class="card" onclick="goTo('settings.html')">
+        <h3>⚙️ System Settings</h3>
+        <p>Manage users, roles, and system settings.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 Quality-Quiver Internal System
+  </footer>
+
+  <script>
+    // Simple auth check (temporary)
+    const role = localStorage.getItem("userRole");
+
+    if (role !== "leadership") {
+      alert("Access denied. Leadership only.");
+      window.location.href = "login.html";
+    }
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+
+    function goTo(page) {
+      window.location.href = page;
+    }
+  </script>
+
+</body>
+</html>
