@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Leadership Dashboard | Quality-Quiver</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', Arial, sans-serif;
       background: #f4f6f9;
-      color: #333;
     }
 
-    /* Header */
     .header {
       background: #0a2540;
       color: white;
@@ -23,71 +21,48 @@
       align-items: center;
     }
 
-    .header h1 {
-      margin: 0;
-      font-size: 22px;
-    }
-
-    .logout-btn {
+    .logout {
       background: #ff4d4d;
-      color: white;
       border: none;
+      color: white;
       padding: 10px 16px;
       border-radius: 6px;
       cursor: pointer;
       font-weight: 600;
     }
 
-    .logout-btn:hover {
-      background: #e60000;
-    }
-
-    /* Main */
     .container {
       padding: 30px;
     }
 
-    .welcome {
-      margin-bottom: 25px;
+    h2 {
+      color: #0a2540;
     }
 
-    .welcome h2 {
-      margin: 0 0 5px 0;
-    }
-
-    .welcome p {
-      color: #666;
-    }
-
-    /* Cards */
-    .cards {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 20px;
+      margin-top: 20px;
     }
 
     .card {
       background: white;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 25px 15px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.1);
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s;
     }
 
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      transform: translateY(-6px);
     }
 
-    .card h3 {
-      margin-top: 0;
-      color: #0a2540;
-    }
-
-    .card p {
-      color: #555;
-      font-size: 14px;
+    .report {
+      background: linear-gradient(135deg, #0a2540, #123a63);
+      color: white;
     }
 
     footer {
@@ -100,39 +75,33 @@
 </head>
 <body>
 
-  <!-- Header -->
   <div class="header">
-    <h1>Quality-Quiver | Leadership Dashboard</h1>
-    <button class="logout-btn" onclick="logout()">Logout</button>
+    <h1>Leadership Dashboard</h1>
+    <button class="logout" onclick="logout()">Logout</button>
   </div>
 
-  <!-- Main Content -->
   <div class="container">
-    <div class="welcome">
-      <h2>Welcome, Leadership 👋</h2>
-      <p>Here’s an overview of quality operations and performance.</p>
+    <h2>Welcome, Leadership 👋</h2>
+    <p>Manage DC teams and quality reports.</p>
+
+    <h2>DC Teams</h2>
+    <div class="grid">
+      <div class="card" onclick="soon()">DC Team 1</div>
+      <div class="card" onclick="soon()">DC Team 2</div>
+      <div class="card" onclick="soon()">DC Team 3</div>
+      <div class="card" onclick="soon()">DC Team 4</div>
+      <div class="card" onclick="soon()">DC Team 5</div>
+      <div class="card" onclick="soon()">DC Team 6</div>
+      <div class="card" onclick="soon()">DC Team 7</div>
+      <div class="card" onclick="soon()">DC Team 8</div>
     </div>
 
-    <div class="cards">
-      <div class="card" onclick="goTo('manage-reports.html')">
-        <h3>📊 QC Reports</h3>
-        <p>Review and manage quality control reports.</p>
-      </div>
-
-      <div class="card" onclick="goTo('team-performance.html')">
-        <h3>👥 Team Performance</h3>
-        <p>Monitor agent and team quality metrics.</p>
-      </div>
-
-      <div class="card" onclick="goTo('compliance.html')">
-        <h3>✅ Compliance</h3>
-        <p>Track audit scores and compliance status.</p>
-      </div>
-
-      <div class="card" onclick="goTo('settings.html')">
-        <h3>⚙️ System Settings</h3>
-        <p>Manage users, roles, and system settings.</p>
-      </div>
+    <h2 style="margin-top:40px;">Reports</h2>
+    <div class="grid">
+      <div class="card report" onclick="soon()">📊 General Compiled Report</div>
+      <div class="card report" onclick="soon()">📅 Monthly Report</div>
+      <div class="card report" onclick="soon()">📉 Team Errors Statistics</div>
+      <div class="card report" onclick="soon()">⚠️ PIP Report</div>
     </div>
   </div>
 
@@ -141,11 +110,11 @@
   </footer>
 
   <script>
-    // Simple auth check (temporary)
+    // AUTH GUARD
+    const loggedIn = localStorage.getItem("isLoggedIn");
     const role = localStorage.getItem("userRole");
 
-    if (role !== "leadership") {
-      alert("Access denied. Leadership only.");
+    if (loggedIn !== "true" || role !== "leadership") {
       window.location.href = "login.html";
     }
 
@@ -154,8 +123,8 @@
       window.location.href = "login.html";
     }
 
-    function goTo(page) {
-      window.location.href = page;
+    function soon() {
+      alert("Feature coming soon 🚀");
     }
   </script>
 
